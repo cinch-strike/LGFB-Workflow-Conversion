@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteer_Hours__c</fullName>
+    <defaultValue>3</defaultValue>
+    <externalId>false</externalId>
+    <inlineHelpText>This will default to 3 if left blank on creation</inlineHelpText>
+    <label>Volunteer Hours</label>
+    <precision>17</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Class_Reminder_Volunteer_1st_SMS</fullName>
+        <description>Class Reminder - Volunteer 1st SMS</description>
+        <protected>false</protected>
+        <recipients>
+            <field>SMS_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Volunteer_Emails/Class_Reminder_Volunteer_SMS</template>
+    </alerts>
+    <alerts>
+        <fullName>Vh_Error_Blank_Record_Alert</fullName>
+        <description>Vh Error Blank Record Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>di_wells@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Volunteer_Emails/VH_Blank_Error</template>
+    </alerts>
+    <alerts>
+        <fullName>Volunteer_Hours_Email_Class_Confirmed</fullName>
+        <description>Volunteer Hours Email Class Confirmed</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Online_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>VC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Volunteer_Emails/Volunteer_Class_Confirmation</template>
+    </alerts>
+    <alerts>
+        <fullName>Volunteer_Hours_Email_Class_Reminder</fullName>
+        <description>Volunteer Hours Email Class Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Online_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>VC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>bev@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>bev@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Volunteer_Emails/Volunteer_Class_Reminder_Emails</template>
+    </alerts>
+    <alerts>
+        <fullName>Volunteer_Hours_Email_Class_Reminder_ONLINE</fullName>
+        <description>Volunteer Hours Email Class Reminder ONLINE</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>VC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>bev@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>bev@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Volunteer_Emails/Volunteer_Class_Reminder_Emails_v2</template>
+    </alerts>
+    <alerts>
+        <fullName>Volunteer_Hours_SMS_Response_Received</fullName>
+        <ccEmails>info@lgfb.co.nz</ccEmails>
+        <description>Volunteer Hours SMS Response Received</description>
+        <protected>false</protected>
+        <recipients>
+            <field>VC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Volunteer_Emails/Volunteer_Class_Reminder_Response</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Campaign_Start_Date</fullName>
+        <field>Campaign_Start_Date__c</field>
+        <formula>Campaign__r.StartDate</formula>
+        <name>Campaign Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SMS_Email</fullName>
+        <field>SMS_Email__c</field>
+        <formula>IF(ISBLANK( Contact_MSISDN__c ), NULL, 
+ Contact_MSISDN__c &amp;&quot;@transmitsms.com&quot;)</formula>
+        <name>SMS Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SMS_Reminder_Sent_Date</fullName>
+        <field>SMS_Reminder_Sent_Date__c</field>
+        <formula>NOW()</formula>
+        <name>SMS Reminder Sent Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VC_Email</fullName>
+        <field>VC_Email__c</field>
+        <formula>Campaign__r.Volunteer_Coordinator__r.Email</formula>
+        <name>VC Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>VH - Error Blank Record Created</fullName>
+        <actions>
+            <name>Vh_Error_Blank_Record_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Online_First_Name__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Contact_Id__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Vh - VC  Email</fullName>
+        <actions>
+            <name>VC_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.VC_Email__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Updates the VC Email field if blank</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Volunteer - Email Class Confirmed AKL</fullName>
+        <actions>
+            <name>Volunteer_Hours_Email_Class_Confirmed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Region__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Volunteer_Status__c</field>
+            <operation>equals</operation>
+            <value>Confirmed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Planned</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.SMS_Reminder_Sent_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Online_Email__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Type</field>
+            <operation>equals</operation>
+            <value>Class - Women,Class - Men</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterThan</operation>
+            <value>7/1/2020</value>
+        </criteriaItems>
+        <description>Sent to VOlunteer to say they have been confirmed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Volunteer - Email Class Reminder</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Region__c</field>
+            <operation>equals</operation>
+            <value>Wellington,Auckland,Auckland Central,Auckland North Shore,Auckland South,Auckland West</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Volunteer_Status__c</field>
+            <operation>equals</operation>
+            <value>Interested,Registered</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.SMS_Reminder_Sent_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Online_Email__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Type</field>
+            <operation>equals</operation>
+            <value>Class - Women,Class - Men</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>notEqual</operation>
+            <value>2019-12-19 Auckland South</value>
+        </criteriaItems>
+        <description>Reminder Email sent to Volunteer 136 hrs before Class</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Volunteer_Hours_Email_Class_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>SMS_Reminder_Sent_Date</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Volunteer_Hours__c.Campaign_Start_Date__c</offsetFromField>
+            <timeLength>-136</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Volunteer - Email Class Reminder v2 ONLINE</fullName>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Region__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Volunteer_Status__c</field>
+            <operation>equals</operation>
+            <value>Interested,Registered</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Planned</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.SMS_Reminder_Sent_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterThan</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Reminder Email sent to Volunteer 136 hrs before Class to update their status online</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Volunteer_Hours_Email_Class_Reminder_ONLINE</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>SMS_Reminder_Sent_Date</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Volunteer_Hours__c.Campaign_Start_Date__c</offsetFromField>
+            <timeLength>-136</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Volunteer - SMS Class Reminder</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Region__c</field>
+            <operation>equals</operation>
+            <value>Wellington,Auckland,Auckland Central,Auckland North Shore,Auckland South,Auckland West</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Volunteer_Status__c</field>
+            <operation>equals</operation>
+            <value>Interested,Registered</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.SMS_Reminder_Sent_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Contact_MSISDN__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Type</field>
+            <operation>equals</operation>
+            <value>Class - Women,Class - Men</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Volunteer_Hours__c.Online_Email__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Reminder SMS sent to Volunteer 136 hrs before Class</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Class_Reminder_Volunteer_1st_SMS</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>SMS_Reminder_Sent_Date</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Volunteer_Hours__c.Campaign_Start_Date__c</offsetFromField>
+            <timeLength>-132</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Volunteer - SMS Email</fullName>
+        <actions>
+            <name>SMS_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Sets the email address to be the Mobile plus the Burst SMS address so it can be sent</description>
+        <formula>AND(NOT(ISBLANK(  Contact_MSISDN__c  )), SMS_Email__c &lt;&gt; &quot;Contact_MSISDN__c @transmitsms.com&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Volunteer Hours - SMS Response Received</fullName>
+        <actions>
+            <name>Volunteer_Hours_SMS_Response_Received</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(ISCHANGED(SMS_Reply__c), NOT(ISBLANK(SMS_Reply__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Volunteer Hours- Campaign Start</fullName>
+        <actions>
+            <name>Campaign_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR(ISBLANK( Campaign_Start_Date__c ), Campaign_Start_Date__c &lt;&gt;   Campaign__r.StartDate  )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

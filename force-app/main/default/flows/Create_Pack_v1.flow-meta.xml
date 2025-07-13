@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>PackStatus</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.Campaign.Warehouse_Packing_Date__c} &gt; {!$Flow.CurrentDate}, &quot;Requested&quot;,
+&quot;Verification&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>PackType</name>
+        <dataType>String</dataType>
+        <expression>IF( TEXT({!$Record.Campaign.Type}) = &quot;Class - Women&quot;, &quot;Skincare&quot;,
+IF({!$Record.Campaign_Online_Content_Type__c}= &quot;Skincare and Makeup&quot; , &quot;Skincare&quot;,
+IF({!$Record.Campaign_Online_Content_Type__c} = &quot;Managing Hair Loss and Regrowth&quot; , &quot;Hair&quot;,
+IF({!$Record.Campaign_Online_Content_Type__c}= &quot;Hand and Nailcare&quot; , &quot;Hand and Nailcare&quot;,
+IF({!$Record.Campaign_Online_Content_Type__c} = &quot;Brow Focus&quot; , &quot;Brows&quot;, NULL)))))</expression>
+    </formulas>
+    <interviewLabel>Create Pack v1 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LGFB create Pack v1</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Pack</name>
+        <label>Create Pack</label>
+        <locationX>458</locationX>
+        <locationY>405</locationY>
+        <assignRecordIdToReference>PackIdNew</assignRecordIdToReference>
+        <connector>
+            <targetReference>CM_Update_Pack</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Class__c</field>
+            <value>
+                <elementReference>$Record.CampaignId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact__c</field>
+            <value>
+                <elementReference>$Record.ContactId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <elementReference>PackStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <elementReference>PackType</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Pack__c</object>
+    </recordCreates>
+    <recordUpdates>
+        <name>CM_Update_Pack</name>
+        <label>CM Update Pack</label>
+        <locationX>595</locationX>
+        <locationY>401</locationY>
+        <inputAssignments>
+            <field>Pack__c</field>
+            <value>
+                <elementReference>PackIdNew</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>335</locationX>
+        <locationY>55</locationY>
+        <connector>
+            <targetReference>Create_Pack</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1 AND 7 AND  (2 OR 3 OR 3 OR 4 OR 5 OR 6)</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Booked</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaign_Online_Content_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Brow Focus</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaign_Online_Content_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Skincare and Makeup</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaign_Online_Content_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Hand and Nailcare</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaign_Online_Content_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Managing Hair Loss and Regrowth</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaign_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Class - Women</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Pack__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>CampaignMember</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>PackIdNew</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

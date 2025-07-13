@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LGFB</fullName>
+    <fields>Name</fields>
+    <fields>Type__c</fields>
+    <fields>Status__c</fields>
+    <fields>Contact__c</fields>
+    <fields>Class__c</fields>
+    <fields>Dispatched_Date__c</fields>
+    <label>LGFB</label>
+</CompactLayout>

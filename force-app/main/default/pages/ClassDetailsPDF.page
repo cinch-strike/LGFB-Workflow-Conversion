@@ -1,0 +1,277 @@
+<apex:page sidebar="false" showheader="false" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" renderAs="Pdf" docType="html-5.0" standardcontroller="Campaign" extensions="ClassSummaryController">
+
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .attendees-div .attendees-head .attendees-title .head-icon{
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            background-image: url("{!URLFOR($Resource.lgfb, 'slice/icons.png')}");
+            background-position: -2px 2px;
+            display: inline-block;
+        }
+        .extras-div .extras-head .extras-title .extras-icon{
+            width: 24px;
+            height: 24px;
+            background-color: white;
+
+            background-position: -2px -24px;
+            display: inline-block;
+        }
+
+        h.serif{
+            font-family: "Open Sans Unicode", Open Sans, sans-serif; font-size: 12px;
+        }
+            h.fw{
+            font-weight: 100 !important;
+            
+            }
+        </style>
+        <style>
+                @page {
+                         size: A4 landscape;
+                         margin: 5mm;
+                      }
+                @page:first {
+                         size: A4 landscape;
+                         margin: 5mm;
+                         margin-top: 3mm;
+                      }
+                body {
+                    font-family: Arial Unicode MS;-->
+                }
+        </style>
+    </head>
+    <body>
+    <table align="center" width="95%" style="border: 1px solid #8f8f8f;border-collapse:collapse;border-bottom:0;">
+        <tr style="background-color:#fff;">
+            <td style="padding-left:10px; padding: 10px;"><img src="{!URLFOR($Resource.lgfb, 'slice/LGFB-logo.png')}" style="padding-left: 3%;width:200px height:100px;" /></td>
+            <td style="padding:1px;">
+             <h2 style="text-align:right;padding-right: 5%;color: #97005E;font-weight: 600;font-size: 1.3em;">{!campaign.Website_Name__c}</h2> 
+           <!-->     <p style="text-align:right;padding-right: 5%;color: #ed3e81;font-size: 1em;line-height: 1px; font-style: italic; "> <h class="serif">{!campaign.Region__c}</h></p> <-->
+           
+            </td>
+        </tr>
+    </table>
+    <table align="center" width="95%" style="border: 1px solid #8f8f8f;border-collapse:collapse;border-bottom:0;" bgcolor="#97005E">
+       <!-- <tr style="background-color:#97005E">
+            <td style="padding:5px;width:110px;padding-left: 20px;color: #D49ECB;letter-spacing: 1px;"><h class="serif">REGION</h></td>
+            <td style="padding:5px;width:200px;color: #ffffff;"><h class="serif fw">{!campaign.Region__c}</h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">START TIME</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif">{!campaign.Start_Time__c}</h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">VOLUNTEER COORDINATOR</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif">{!campaign.Volunteer_Coordinator__r.Name}</h></td>
+        </tr>
+        <tr style="background-color:#97005E">
+            <td style="padding:5px;width:110px;padding-left: 20px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">VENUE</h></td>
+            <td style="padding:5px;color: #fff;width:190px;">
+
+                <h class="serif">{!campaign.Venue_Name__c}</h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">END TIME</h></td>
+            <td style="padding:5px;width:200px;padding-top:0px;color: #fff;"><h class="serif">{!campaign.End_Time__c}</h></td>
+            <td style="padding:5px;width:110px;padding-top:0px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">TUTOR</h></td>
+            <td style="padding:5px;width:200px;padding-top:0px;color: #fff;"><h class="serif">{!campaign.Tutor__r.Name}</h></td>
+        </tr>
+        <tr style="background-color:#97005E">
+            <td style="padding:5px;width:110px;padding-left: 20px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">START DATE</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif"><apex:outputText value="{0,date, EEEE',' d MMM yyyy}">
+                <apex:param value="{!campaign.StartDate}" />
+            </apex:outputText></h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">
+                PARTICIPANTS</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif">{!campaign.NumberOfContacts}</h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">
+                TUTOR CLASS FEEDBACK RECEIVED</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif"><apex:outputText value="{0,date, EEEE',' d MMM yyyy}">
+                <apex:param value="{!campaign.Tutor_Class_Feedback_Received__c}" />
+            </apex:outputText></h></td>
+        </tr>
+        <tr style="background-color:#97005E">
+            <td style="padding:5px;width:110px;padding-left: 20px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;">&nbsp;</td>
+            <td style="padding:5px;width:200px;color: #fff;"></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;"><h class="serif">PATIENT COORDINATOR</h></td>
+            <td style="padding:5px;width:200px;color: #fff;"><h class="serif">{!campaign.Patient_Coordinator__r.Name}</h></td>
+            <td style="padding:5px;width:110px;color: #D49ECB;letter-spacing: 1px;opacity: 0.8;">&nbsp;</td>
+            <td style="padding:5px;width:200px;color: #fff;">&nbsp;</td>
+        </tr>
+        -->
+    </table>
+    <br/>
+    <br/>
+    <table align="center" border="0" width="95%" style=" padding-right: 2cm; padding-left: 2cm;border-collapse: collapse; border-spacing: 0; border-width: 0; padding: 0" height="150" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="8"><p align="left" style="margin-left: 2px;"><apex:image url="{!$Resource.ClassDetailsPDF_logo1}" style="vertical-align: middle;"/> <h style="color: #97005E;" class="serif"> <span class="head-icon"></span>&nbsp;PARTICIPANTS</h></p></td>
+        </tr>
+       
+        <tr >
+            <td width="20%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">CLASS DETAILS</h></td>
+            <td width="27%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">PARTICIPANT DETAILS</h></td>
+            <td width="24%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">ATTRIBUTES</h></td>
+            <td width="27%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">OTHER</h></td>
+        </tr>
+        <apex:repeat value="{!campaignMemberList}" var="camp">
+        <tr>
+            <td width="20%" colspan="2"><h style=" color: #97005E;" class="serif">Status</h></td>
+            <td width="12%"><h style="color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.MobilePhone.Label}</h></td>
+            <td width="11%"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Phone.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Skin_Tone__c.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Eyebrow_Colour__c.Label}</h></td>
+            <td width="14%"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Support_Person__c.Label}</h></td>
+            <td width="1%"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Previous_Participant__c.Label}</h></td>
+        </tr>
+        <tr>
+            <td width="20%" colspan="2" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Status}</h></h></td>
+            <td width="12%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.MobilePhone}</h></h></td>
+            <td width="11%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Phone}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Skin_Tone__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Eyebrow_Colour__c}</h></h></td>
+            <td width="14%"><h style="font-size: 12px; color: #000000"><h class="serif">{!camp.Support_Person__c}</h></h></td>
+            <td width="1%"><h style="font-size: 12px; color: #000000"><h class="serif">{!camp.Previous_Participant__c}</h></h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.FirstName.Label}</h></td>
+            <td width="14%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.LastName.Label}</h></td>
+            <td width="27%" colspan="2"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Email.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Hair_Colour__c.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Hair_Loss__c.Label}</h></td>
+            <td width="14%"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Preferences__c.Label}</h></td>
+            <td width="1%"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Special_Requirements__c.Label}</h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.FirstName}</h></h></td>
+            <td width="14%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.LastName}</h></h></td>
+            <td width="27%" colspan="2"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Email}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Hair_Colour__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Hair_Loss__c}</h></h></td>
+            <td width="14%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Preferences__c}</h></h></td>
+            <td width="1%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Special_Requirements__c}</h></h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Registration_Method__c.Label}</h></td>
+            <td width="14%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Registered_Date__c.Label}</h></td>
+            <td width="10%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Age_Attended__c.Label}</h></td>
+             <td width="10%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Ethnicity2__c.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Preferred_lipstick_shade__c.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Preferred_Eyeshadow__c.Label}</h></td>
+            <td width="11%" colspan="2"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Product_Concerns__c.Label}</h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Registration_Method__c}</h></h></td>
+            <td width="14%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Registered_Date__c}</h></h></td>
+            <td width="10%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Age_Attended__c}</h></h></td>
+             <td width="10%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Ethnicity2__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Preferred_lipstick_shade__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Preferred_Eyeshadow__c}</h></h></td>
+            <td width="11%" colspan="2"><h style="font-size: 12px; color: #000000;"><h class="serif">{!camp.Product_Concerns__c}</h></h></td>
+        </tr>
+
+            <tr>
+            <td width="20%" colspan="2"> &nbsp; </td>
+            <td width="27%" colspan="2"> &nbsp; </td>
+            <td width="24%" colspan="2"> &nbsp; </td>
+            <td width="25%" colspan="2"> &nbsp; </td>
+        </tr>
+        <tr>
+            <td width="20%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+            <td width="27%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+            <td width="24%" colspan="2" style=" border-bottom: 1px solid #000000;">  &nbsp;</td>
+            <td width="25%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+        </tr>
+         
+        </apex:repeat>
+    </table>
+        
+        <br/>
+    <br/>
+    <table align="center" border="0" width="95%" style=" padding-right: 2cm; padding-left: 2cm;border-collapse: collapse; border-spacing: 0; border-width: 0; padding: 0" height="150" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="8"><p align="left" style="margin-left: 2px;"><apex:image url="{!$Resource.ClassDetailsPDF_logo1}" style="vertical-align: middle;"/> <h style="color: #97005E;" class="serif"> <span class="head-icon"></span>&nbsp;VOLUNTEERS</h></p></td>
+        </tr>
+       
+        <tr >
+            <td width="20%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">VOLUNTEER DETAILS</h></td>
+            <td width="27%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">CONTACT DETAILS</h></td>
+            <td width="24%" colspan="2" style=" border-bottom: 1px solid #000000;"><h style=" color: #97005E;" class="serif">ROLE</h></td>
+        </tr>
+        <apex:repeat value="{!volunteerHoursList}" var="vol">
+        <tr>
+            <td width="20%" colspan="2"><h style=" color: #97005E;" class="serif">Status</h></td>
+            <td width="12%"><h style="color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.MobilePhone.Label}</h></td>
+            <td><h style=" color: #97005E;" class="serif">Hours</h></td>
+            <td><h style=" color: #97005E;" class="serif">Role</h></td>
+        </tr>
+        <tr>
+            <td width="20%" colspan="2" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Volunteer_Status__c}</h></h></td>
+            <td width="12%"><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Online_Mobile__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Volunteer_Hours__c}</h></h></td>
+            <td><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Role__c}</h></h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.FirstName.Label}</h></td>
+            <td width="14%" ><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.LastName.Label}</h></td>
+            <td width="27%" colspan="2"><h style=" color: #97005E;" class="serif">{!$ObjectType.CampaignMember.fields.Email.Label}</h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Online_First_Name__c}</h></h></td>
+            <td width="14%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Online_Last_Name__c}</h></h></td>
+            <td width="27%" colspan="2"><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Online_Email__c}</h></h></td>
+        </tr>
+        <tr>
+            <td width="15%" ><h style=" color: #97005E;" class="serif">Comments</h></td>
+           
+        </tr>
+        <tr>
+            <td width="15%" ><h style="font-size: 12px; color: #000000;"><h class="serif">{!vol.Comments__c}</h></h></td>
+            
+        </tr>
+
+            <tr>
+            <td width="20%" colspan="2"> &nbsp; </td>
+            <td width="27%" colspan="2"> &nbsp; </td>
+            <td width="24%" colspan="2"> &nbsp; </td>
+            <td width="25%" colspan="2"> &nbsp; </td>
+        </tr>
+        <tr>
+            <td width="20%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+            <td width="27%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+            <td width="24%" colspan="2" style=" border-bottom: 1px solid #000000;">  &nbsp;</td>
+            <td width="25%" colspan="2" style=" border-bottom: 1px solid #000000;"> &nbsp;</td>
+        </tr>
+         
+        </apex:repeat>
+    </table>    
+        
+        
+        <apex:outputPanel rendered="{!campaignMemberList.size < 1}"> 
+    <div style="page-break-after:always;"/>
+            </apex:outputPanel>
+    <table style="border-collapse:collapse;font-size:12px;" align="center" border="0" width="95%" height="177">
+        <tr>
+            <td style="vertical-align:top;">
+                <table width="100%" style="border: 0 solid #8f8f8f;border-collapse:collapse;font-size:12px" border="0" height="249">
+                    <tr>
+                <td colspan="8"><p align="left" style="margin-left: 2px;"><apex:image url="{!$Resource.ClassDetailsPDF_logo2}" style="vertical-align: middle;" /> <h style="color: #97005E; " class="serif"> &nbsp;POST CLASS DETAILS</h></p></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px;padding:5px;" height="43"><h style=" color: #97005E;" class="serif">{!$ObjectType.Campaign.fields.Number_of_Unused_Kits__c.Label}</h></td>
+                        <td style="padding:5px;" height="43"><h style="font-size: 12px;"><h class="serif" >{!cWrapper.numKits}</h></h></td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 250px;padding:5px;" height="50"><h style=" color: #97005E;" class="serif">{!$ObjectType.Campaign.fields.Health_Safety_Issues__c.Label}</h></td>
+                        <td style="padding:5px;" height="40"><h style="font-size: 12px;"><h class="serif">{!cWrapper.healthSafety}</h></h></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px;padding:5px;"><h style=" color: #97005E;" class="serif">{!$ObjectType.Campaign.fields.Tutor_Class_Notes__c.Label}</h></td>
+                        <td style="padding:5px;height: 30px;"><h style="font-size: 12px;"><h class="serif">{!cWrapper.tutorNotes}</h></h></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    </body>
+
+</apex:page>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_to_Use_in_Media</fullName>
+    <columns>NAME</columns>
+    <columns>Participant__c</columns>
+    <columns>Region__c</columns>
+    <columns>Class__c</columns>
+    <columns>Class_Attended_Date__c</columns>
+    <columns>Tutor__c</columns>
+    <columns>Tutor_Email__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Recommend_to_Other_Women__c</columns>
+    <columns>Overall_Rating__c</columns>
+    <columns>Overall_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Tutor__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Approved to Use in Media</label>
+    <language>en_US</language>
+</ListView>

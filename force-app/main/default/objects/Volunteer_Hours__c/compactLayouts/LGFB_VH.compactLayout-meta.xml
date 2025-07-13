@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LGFB_VH</fullName>
+    <fields>Name</fields>
+    <fields>Campaign__c</fields>
+    <fields>Contact__c</fields>
+    <fields>Volunteer_Status__c</fields>
+    <label>LGFB VH</label>
+</CompactLayout>

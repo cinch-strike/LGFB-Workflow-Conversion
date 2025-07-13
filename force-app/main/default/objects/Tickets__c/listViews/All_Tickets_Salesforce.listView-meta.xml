@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Tickets_Salesforce</fullName>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Area__c</columns>
+    <columns>Summary__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>System__c</field>
+        <operation>equals</operation>
+        <value>Salesforce</value>
+    </filters>
+    <label>All Tickets - Salesforce</label>
+</ListView>

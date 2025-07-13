@@ -1,0 +1,198 @@
+<apex:component >
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.lgfb, 'css/bootstrap.css')}" type="text/css"/>
+    
+    <style type="text/css">
+        body{
+            padding:0;
+            margin:0;
+            background-color: #eef1f6;
+            font-family: 'Open Sans Unicode', Open Sans, sans-serif;
+    		font-size:14px;
+    		font-weight: 500;
+    		color: #97005E;
+        }
+        
+        .head-container{
+            width: 100%;
+            display: relative;
+            background-color: #ffffff;
+        }
+        .head-container .logo-div{
+            margin:auto;
+            padding-top: 25px;
+            width: 85%;
+        }
+        .head-container .hide-func-container{
+            margin:auto;
+            margin-top: 20px;
+            width: 85%;
+        }
+        .head-container .workshop-details{
+            color: white;
+            padding-top: 15px;
+            font-size: small;
+            line-height: 95%;
+            margin:auto;
+            width: 77%;
+        }
+        .head-container .hide-func-div{
+            height: 50px;
+            background-color: #97005E;
+            display: block;
+        }
+        .head-container .workshop-details-div{
+            height: 200px;
+            background-color:#97005E;
+            display: block;
+        }
+        .head-container .logo-div .col-md-12 .title{
+            text-align: right;
+            margin-top: 10px;
+        }
+        .head-container .logo-div .col-md-12 .title h2{
+            font-weight: 600;
+            color:#ed3e81;
+        }
+        .head-container .logo-div .col-md-12 .title .sub-title{
+            font-weight: 300;
+            font-size: 1.7em;
+            line-height: 10px;
+            color:#ed3e81;
+        }
+        .head-container .hide-func-div .hide-func-text{
+            text-transform: uppercase;
+            color: white;
+            position: absolute;
+            margin-top: 15px;
+            margin-left: 95px;
+            cursor: pointer;
+        }
+        .head-container .workshop-details .form-group{
+            margin-bottom: 7px;
+        }
+        .head-container .workshop-details .control-label{
+            font-weight: 300;
+            opacity: 0.7;
+            text-align: left;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .head-container .workshop-details .control-text{
+            font-weight: 600;
+            position: absolute;
+            margin-top: 3px;
+            margin-left: 25px;
+            font-size: 1.15em;
+        }
+        .body-container{
+            margin: auto;
+            width: 85%;
+        }
+        .body-container .attendees-div,.extras-div{
+            padding:25px;
+            margin-top: 25px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #e0e2e7;
+        }
+        .body-container .volunteerhours-div,.extras-div{
+            padding:25px;
+            margin-top: 25px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #e0e2e7;
+        }
+        .body-container .buttons-div{
+            padding:25px;
+            margin: auto;
+            margin-top: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .body-container .buttons-div .buttons-row{
+            margin: auto;
+        }
+        .body-container .buttons-div .buttons-row .btn-save{
+            color: #fff;
+            padding: 7px;
+            background-color: #ed3e81;
+            border: 1px solid #ed3e81;
+            width: 200px;
+            height: 50px;
+            letter-spacing: 3px;
+        }
+        .body-container .buttons-div .buttons-row .btn-print{
+            background: transparent;
+            border: 2px solid #ed3e81;
+            color: #ed3e81;
+            width: 200px;
+            height: 50px;
+            margin-left: 20px;
+            letter-spacing: 3px;
+            padding-top: 12px;
+        }
+        .body-container .attendees-div .attendees-head .attendees-title h3{
+            font-weight: 600;
+        }
+        .body-container .extras-div .extras-head .extras-title h3{
+            font-weight: 600;
+        }
+        .body-container .attendees-div .attendees-head .attendees-title .head-icon{
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            background-image: url("{!URLFOR($Resource.lgfb, 'slice/icons.png')}");
+            background-position: -2px 2px;
+            display: inline-block;
+        }
+        .body-container .extras-div .extras-head .extras-title .extras-icon{
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            background-image: url("{!URLFOR($Resource.lgfb, 'slice/icons.png')}");
+            background-position: -2px -24px;
+            display: inline-block;
+        }
+        .body-container .attendees-div .attendees-head span{
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .body-container .attendees-div .attendees-head input{
+            display: inline-block;
+            width: 45%;
+        }
+        .body-container .a-table-container{
+            margin:auto;
+            overflow: auto;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .btn-save-modal{
+            color: #fff;
+            background-color: #ed3e81;
+        }
+        
+        .participantrow {
+        	border-top: 1px solid black;
+        	border-bottom: 1px solid black;
+    		width : 100%;
+        }
+        .participantheader {
+        	width : 100%;
+        }
+        .volunteerrow {
+        	border-top: 1px solid black;
+        	border-bottom: 1px solid black;
+    		width : 100%;
+        	padding:5px;
+        }
+        .volunteerheader {
+        	width : 100%;
+        }
+    </style>
+    <link href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' rel='stylesheet' type='text/css'/>
+</apex:component>

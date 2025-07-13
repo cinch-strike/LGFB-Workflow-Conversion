@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reminder_Sent_Last_7_Days</fullName>
+    <columns>NAME</columns>
+    <columns>Campaign_Region__c</columns>
+    <columns>Campaign__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <columns>VC_Name__c</columns>
+    <columns>Online_Email__c</columns>
+    <columns>Online_First_Name__c</columns>
+    <columns>Online_Last_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Role__c</columns>
+    <columns>SMS_Reminder_Sent_Date__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>VC_Email__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SMS_Reminder_Sent_Date__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:7</value>
+    </filters>
+    <label>Reminder Sent Last 7 Days</label>
+</ListView>

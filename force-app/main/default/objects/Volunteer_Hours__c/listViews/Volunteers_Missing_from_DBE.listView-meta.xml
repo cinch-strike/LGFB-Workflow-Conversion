@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volunteers_Missing_from_DBE</fullName>
+    <columns>Volunteer_Missing_from_DB__c</columns>
+    <columns>NAME</columns>
+    <columns>Campaign__c</columns>
+    <columns>Campaign_Region__c</columns>
+    <columns>VC_Name__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <columns>Online_Email__c</columns>
+    <columns>Online_First_Name__c</columns>
+    <columns>Online_Last_Name__c</columns>
+    <columns>Online_Mobile__c</columns>
+    <columns>Role__c</columns>
+    <columns>Volunteer_Hours__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Volunteer_Missing_from_DB__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Contact__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Volunteers Missing from DB</label>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Created_After_Packing_Date__c</fullName>
+    <formula>IF(DATEVALUE(CreatedDate) &gt;= Class__r.Warehouse_Packing_Date__c ,TRUE, FALSE)</formula>
+    <label>Created After Packing Date</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

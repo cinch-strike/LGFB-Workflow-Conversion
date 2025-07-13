@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Booked_Confidence_SelfCare</name>
+        <label>Booked - Confidence/SelfCare</label>
+        <locationX>472</locationX>
+        <locationY>523</locationY>
+        <actionName>CampaignMember.Class_Booking_Confirmation_Online_Confidence_SelfCare</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Booked_Confirmation_Date</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CampaignMember.Class_Booking_Confirmation_Online_Confidence_SelfCare</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Reminder_Confidence_SelfCare</name>
+        <label>Reminder - Confidence/SelfCare</label>
+        <locationX>833</locationX>
+        <locationY>200</locationY>
+        <actionName>CampaignMember.Class_Reminder_Patient_Email_Online_Confidence_SelfCare</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Update_Reminder_Sent_Date</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CampaignMember.Class_Reminder_Patient_Email_Online_Confidence_SelfCare</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Booked_Email_Sent</name>
+        <label>Booked Email Sent Date</label>
+        <locationX>333</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Booked_Email_Sent_Date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Booked_Email_Sent_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Booked_Confidence_SelfCare</targetReference>
+            </connector>
+            <label>Booked Email Sent Date</label>
+        </rules>
+    </decisions>
+    <description>T00000298</description>
+    <environments>Default</environments>
+    <interviewLabel>Content Type - Confidence and Selfcare {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LGFB Content Type - Confidence and Selfcare</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Booked_Confirmation_Date</name>
+        <label>Booked Confirmation Date</label>
+        <locationX>620</locationX>
+        <locationY>523</locationY>
+        <inputAssignments>
+            <field>Booked_Email_Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Reminder_Sent_Date</name>
+        <label>Update Reminder Sent Date</label>
+        <locationX>903</locationX>
+        <locationY>349</locationY>
+        <filterLogic>1 OR 2</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Confirmed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Booked</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SMS_Reminder_Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>307</locationX>
+        <locationY>3</locationY>
+        <connector>
+            <targetReference>Booked_Email_Sent</targetReference>
+        </connector>
+        <filterFormula>AND(TEXT({!$Record.Campaign.Status})= &quot;Planned&quot;, 
+TEXT({!$Record.Status})= &quot;Booked&quot;, 
+TEXT({!$Record.Campaign.Online_Content_Type__c})= &quot;Confidence and Selfcare&quot;)</filterFormula>
+        <object>CampaignMember</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Reminders</name>
+            <connector>
+                <targetReference>Reminder_Confidence_SelfCare</targetReference>
+            </connector>
+            <label>Reminders - 2 days</label>
+            <maxBatchSize>200</maxBatchSize>
+            <offsetNumber>-2</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Campaign_Start_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Reminders_2_hrs</name>
+            <connector>
+                <targetReference>Reminder_Confidence_SelfCare</targetReference>
+            </connector>
+            <label>Reminders - 2 hrs</label>
+            <maxBatchSize>200</maxBatchSize>
+            <offsetNumber>-2</offsetNumber>
+            <offsetUnit>Hours</offsetUnit>
+            <recordField>Campaign_Start_Time__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>CampaignStatus</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

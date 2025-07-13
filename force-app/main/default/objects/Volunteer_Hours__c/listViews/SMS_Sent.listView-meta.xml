@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SMS_Sent</fullName>
+    <columns>NAME</columns>
+    <columns>Campaign__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <columns>SMS_Reminder_Sent_Date__c</columns>
+    <columns>SMS_Reply__c</columns>
+    <columns>Online_Email__c</columns>
+    <columns>Online_First_Name__c</columns>
+    <columns>Online_Last_Name__c</columns>
+    <columns>Online_Mobile__c</columns>
+    <columns>Role__c</columns>
+    <columns>Volunteer_Hours__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SMS_Reminder_Sent_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>SMS Sent</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,94 @@
+.slds-grid {
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+
+.lightning-combobox, .lightning-input {
+    flex: 1;
+    padding: 0 5px;
+}
+
+.custom-register-button-disabled {
+    /* Example: Greyed-out style for full capacity */
+    background-color: grey !important;
+    color: white;
+    cursor: not-allowed;
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* This will place equal space between items */
+    margin: 0 50px; /* Keeping the margin on both sides */
+
+}
+
+.lightning-combobox, .lightning-input {
+    flex: 1; /* This allows each element to grow and take equal space */
+    padding: 0 10px; /* Adjust padding as needed for spacing between filters */
+}
+
+.filter-item { /* Assuming you add this class to each filter */
+    flex: 1;
+    padding: 0 10px;
+    min-width: 100px; /* Optional: to prevent filters from becoming too narrow */
+}
+
+.custom-datatable  {
+    color: #333333;
+    font-family: 'Lato';
+    
+    
+}
+
+.table-mobile  {
+    display: none;
+    
+}
+
+
+@media only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 980px) {
+    .custom-datatable  {
+        display: none;
+        
+    }
+    .table-mobile  {
+        display: block;
+        color: #333333;
+        font-family: 'Lato';
+        
+    }
+    .table-mobile .row {
+        background-color: #f0f0f0; /* Light grey background */
+        border-radius: 10px; /* Rounded corners for the pill effect */
+        padding: 10px;
+        margin-bottom: 10px; /* Space between rows */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    }
+    
+    .table-mobile .cell {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px; /* Space between cells */
+    }
+    
+    .table-mobile .label {
+        /*font-weight: bold;*/
+        color: #333333;
+        font-family: 'Lato';
+    }
+    
+    .table-mobile .value {
+        color: #333333; 
+        
+    }
+
+    .full-width-button .full-width {
+        width: 100%; /* Make the button span the full width of its container */
+    }
+    
+    
+}

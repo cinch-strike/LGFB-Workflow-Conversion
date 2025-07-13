@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_8</fullName>
+    <columns>NAME</columns>
+    <columns>Participant__c</columns>
+    <columns>Region__c</columns>
+    <columns>Class__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Overall_Rating__c</columns>
+    <columns>Recommend_to_Other_Women__c</columns>
+    <columns>Overall_Comments__c</columns>
+    <columns>Tutor_Email_Sent_Date__c</columns>
+    <columns>Registration_Process__c</columns>
+    <columns>Mailing_List__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Recommend_to_Other_Women__c</field>
+        <operation>lessThan</operation>
+        <value>8</value>
+    </filters>
+    <label>All &lt; 8</label>
+    <language>en_US</language>
+</ListView>

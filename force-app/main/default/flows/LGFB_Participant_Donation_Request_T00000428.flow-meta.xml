@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>T00000428</description>
+        <name>Participant_Feedback_Donation</name>
+        <label>Participant Donation Request T00000428</label>
+        <locationX>469</locationX>
+        <locationY>495</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Update_Participant_Donation_Request</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>info@lgfb.co.nz</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Look Good Feel Better: Thank you for being part of our community</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;table class=&quot;ql-table-blob&quot; style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: rgb(255, 255, 255); align-items: flex-start; width: 580px;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;100%&quot; class=&quot;columnCell&quot; style=&quot;vertical-align: top; display: inline-block; float: left;&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;table id=&quot;contentRegion&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align=&quot;Center&quot;&gt;&lt;a href=&quot;https://lgfb.co.nz/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lgfbnz.file.force.com/file-asset-public/Coral_Feedback_Header?oid=00D6F000001MSSf&quot; alt=&quot;&quot; width=&quot;600&quot; style=&quot;width: 580px; display: block; border-width: initial; border-style: none; object-fit: fill;&quot;&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: rgb(255, 255, 255); align-items: flex-start; width: 580px;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;100%&quot; class=&quot;columnCell&quot; style=&quot;vertical-align: top; display: inline-block; float: left;&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;table id=&quot;contentRegion&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;width: 580px; word-break: break-word; font-size: 14px;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-family: Arial, Helvetica, sans-serif;&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;quot;Segoe UI&amp;quot;, Arial, Helvetica, sans-serif;&quot;&gt;Hi {!$Record.FirstName}&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;span style=&quot;font-family: &amp;quot;Segoe UI&amp;quot;, Arial, Helvetica, sans-serif;&quot;&gt;&lt;span style=&quot;line-height: 16.1px;&quot;&gt;Thank you for being part of the Look Good Feel Better community. We are glad you have experienced {!$Record.No_of_Classes_Attended__c} classes with us and hope that they have provided some support during this challenging period. While no one ever expects to need our support, we’re truly grateful to be walking alongside you at this time.&lt;br&gt;&lt;br&gt;We hope you’ve felt cared for, and that the practical tools and tips have helped you feel a little more like yourself—during treatment and beyond. Please know we’re here for you, for as long as you need us.&lt;br&gt;&lt;br&gt;As a charity, we’re committed to keeping every class free and available to anyone facing cancer. It’s only possible thanks to the kindness of others. If you&apos;re in a place to give now—or sometime in the future—your gift will help ensure others can find the same support when they need it most.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&amp;nbsp;&lt;div id=&quot;&quot; style=&quot;left: 20px; top: 20px;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: rgb(255, 255, 255); align-items: flex-start; width: 580px;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;100%&quot; class=&quot;columnCell&quot; style=&quot;vertical-align: top; display: inline-block; float: left;&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;table style=&quot;border: 0px; width: 580px;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;div style=&quot;word-break: break-word; border: 0px; text-align: center;&quot;&gt;&lt;div style=&quot;display: inline-block; border: 0px;&quot;&gt;&lt;a href=&quot;https://look-good-feel-better-donate.raiselysite.com/&quot; target=&quot;_blank&quot; style=&quot;direction: ltr; display: block; margin: 0px; font-family: Helvetica, Arial, Helvetica, sans-serif; font-size: 16px; padding: 10px; color: rgb(255, 255, 255); font-weight: bold; border-width: 5px; border-style: solid; border-color: rgb(255, 109, 106); background-color: rgb(255, 109, 106); border-radius: 5px;&quot;&gt;Gift a donation&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: rgb(255, 255, 255); align-items: flex-start; width: 580px;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;100%&quot; class=&quot;columnCell&quot; style=&quot;vertical-align: top; display: inline-block; float: left;&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;table id=&quot;contentRegion&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;width: 580px; word-break: break-word; font-size: 14px;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-family: Arial, Helvetica, sans-serif;&quot;&gt;&lt;span style=&quot;font-family: &amp;quot;Segoe UI&amp;quot;, Arial, Helvetica, sans-serif;&quot;&gt;With heartfelt thanks,&lt;br&gt;&lt;br&gt;The Look Good Feel Better Team&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class=&quot;ql-table-blob&quot; style=&quot;font-family: &amp;quot;Times New Roman&amp;quot;; background-color: rgb(255, 255, 255); align-items: flex-start; width: 580px;&quot; width=&quot;100%&quot;&gt;&lt;tbody&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;100%&quot; class=&quot;columnCell&quot; style=&quot;vertical-align: top; display: inline-block; float: left;&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;table id=&quot;contentRegion&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;width: 580px; word-break: break-word;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align=&quot;Center&quot;&gt;&lt;a href=&quot;https://lgfb.co.nz/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lgfbnz.file.force.com/file-asset-public/Coral_Feedback_Footer?oid=00D6F000001MSSf&quot; alt=&quot;&quot; width=&quot;600&quot; style=&quot;width: 580px; display: block; border-width: initial; border-style: none; object-fit: fill;&quot;&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useLineBreaks</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <name>EmailtemplateId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>00XTK00000Fc4tB2AR</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>FeedbackSubject</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Look Good Feel Better: We would appreciate your feedback</stringValue>
+        </value>
+    </constants>
+    <description>T00000428</description>
+    <environments>Default</environments>
+    <interviewLabel>LGFB Participant Donation Request T00000428 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LGFB Participant Donation Request T00000428</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Participant_Donation_Request</name>
+        <label>Update Participant Donation Request</label>
+        <locationX>678</locationX>
+        <locationY>496</locationY>
+        <inputAssignments>
+            <field>Participant_Donation_Request__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>333</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>Participant_Feedback_Donation</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterFormula>AND( 
+NOT({!$Record.HasOptedOutOfEmail}),
+{!$Record.No_of_Classes_Attended__c} &gt;= 4,
+{!$Record.Participant_Status2__c} = &quot;Active - Attended&quot;,
+{!$Record.npo02__TotalOppAmount__c} = 0,
+ISBLANK({!$Record.Participant_Donation_Request__c}))</filterFormula>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>X2_days_Later</name>
+            <label>2 days Later</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Hours</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_CampaignMemberToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CampaignMember</objectType>
+    </variables>
+</Flow>

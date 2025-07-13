@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_AKL_Future</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Campaign_Region__c</columns>
+    <columns>Campaign__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <columns>VC_Name__c</columns>
+    <columns>Online_Email__c</columns>
+    <columns>Online_First_Name__c</columns>
+    <columns>Online_Last_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Role__c</columns>
+    <columns>SMS_Reminder_Sent_Date__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>VC_Email__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Campaign_Region__c</field>
+        <operation>contains</operation>
+        <value>Auckland</value>
+    </filters>
+    <filters>
+        <field>Campaign_Start_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>All AKL - Future</label>
+</ListView>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wigs_All</fullName>
+    <columns>NAME</columns>
+    <columns>Campaign_Name__c</columns>
+    <columns>Campaign_Day__c</columns>
+    <columns>Campaign_Region__c</columns>
+    <columns>Campaign_Start_Date__c</columns>
+    <columns>Campaign_Venue__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value>Wigs</value>
+    </filters>
+    <label>Wigs - All</label>
+</ListView>

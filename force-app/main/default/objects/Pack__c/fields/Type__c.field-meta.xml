@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Skincare</fullName>
+                <default>false</default>
+                <label>Skincare</label>
+            </value>
+            <value>
+                <fullName>Brows</fullName>
+                <default>false</default>
+                <label>Brows</label>
+            </value>
+            <value>
+                <fullName>Hair</fullName>
+                <default>false</default>
+                <label>Hair</label>
+            </value>
+            <value>
+                <fullName>Hand and Nailcare</fullName>
+                <default>false</default>
+                <label>Hand and Nailcare</label>
+            </value>
+            <value>
+                <fullName>Men</fullName>
+                <default>false</default>
+                <label>Men</label>
+            </value>
+            <value>
+                <fullName>Confidence Kit</fullName>
+                <default>false</default>
+                <label>Confidence Kit</label>
+            </value>
+            <value>
+                <fullName>Xmas Gift</fullName>
+                <default>false</default>
+                <label>Xmas Gift</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

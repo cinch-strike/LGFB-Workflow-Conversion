@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Class_Alert_Warehouse_Packing_Date</fullName>
+        <description>Class Alert Warehouse Packing Date Expiry</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>clare@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kat@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sharon@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Warehouse_Booking_Date_Expiry</template>
+    </alerts>
+    <alerts>
+        <fullName>Post_Class_Tutor_Class_Summary</fullName>
+        <description>Post Class - Facilitator Class Summary</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <recipient>sheryll@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Post_Class_Tutor_Class_Summary_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Post_Class_Tutor_Class_Summary_Thanks</fullName>
+        <description>Post Class - Facilitator Class Summary Thanks</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <recipient>sheryll@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Post_Class_Tutor_Class_Summary_NotificationThanks</template>
+    </alerts>
+    <alerts>
+        <fullName>Pre_Class_Registrations</fullName>
+        <description>Pre Class - Facilitator Summary</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Volunteer_Coordinator__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Pre_Class_Class_Summary_Form</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Campaign_Name</fullName>
+        <description>TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;  TEXT(Region__c)</description>
+        <field>Name</field>
+        <formula>IF(
+ISPICKVAL(Special_Class__c, &quot;Women&quot;),
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
+
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;
+
+&quot;COM - &quot; &amp; TEXT(Region__c),
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
+
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;
+
+&quot;COM - &quot; &amp; TEXT(Region__c) &amp; &quot; - &quot; &amp; TEXT( Special_Class__c ))</formula>
+        <name>Campaign Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Campaign_Name_Online</fullName>
+        <field>Name</field>
+        <formula>IF(
+ISPICKVAL( Type , &quot;Awareness&quot;),
+TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp; &quot;Awareness&quot;,
+
+IF(AND
+(
+ISPICKVAL(Type , &quot;Class - Online&quot;),
+OR(
+ISPICKVAL(Special_Class__c, &quot;All&quot;),
+ISPICKVAL(Special_Class__c, &quot;Women&quot;),
+ISPICKVAL(Special_Class__c, &quot;Men&quot;))
+), 
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp; 
+&quot;ON - &quot; &amp; TEXT(Online_Content_Type__c ),
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp; &quot;ON - &quot; &amp; TEXT(Online_Content_Type__c ) &amp; &quot; - &quot; &amp; TEXT(Special_Class__c))
+
+)</formula>
+        <name>Campaign Name Online</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>External_Campaign_No</fullName>
+        <field>External_Campaign_Name__c</field>
+        <formula>Campaign_No__c</formula>
+        <name>External Campaign No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tutor_Feedback</fullName>
+        <field>Tutor_Class_Feedback_Received__c</field>
+        <formula>TODAY()</formula>
+        <name>Tutor Feedback</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Website_Name</fullName>
+        <field>Website_Name__c</field>
+        <formula>TEXT(Region__c) &amp; &quot;, &quot; &amp; Venue_Website_Name__c &amp; &quot;, &quot; &amp; LPAD(TEXT(DAY(StartDate )),2,&quot;0&quot;)+&quot;/&quot; +LPAD(TEXT(MONTH(StartDate)),2,&quot;0&quot;)+&quot;/&quot; +TEXT(YEAR(StartDate)) &amp; &quot;, &quot; &amp; TEXT( Start_Time__c ) &amp; &quot; - &quot; &amp; TEXT( End_Time__c )</formula>
+        <name>Website Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Website_Name_Online</fullName>
+        <field>Website_Name__c</field>
+        <formula>TEXT(Online_Content_Type__c) &amp; &quot;, &quot; &amp; LPAD(TEXT(DAY(StartDate )),2,&quot;0&quot;)+&quot;/&quot; +LPAD(TEXT(MONTH(StartDate)),2,&quot;0&quot;)+&quot;/&quot; +TEXT(YEAR(StartDate)) &amp; &quot;, &quot; &amp; TEXT( Start_Time__c ) &amp; &quot; - &quot; &amp; TEXT( End_Time__c )</formula>
+        <name>Website Name Online</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Class - Campaign Name</fullName>
+        <actions>
+            <name>Campaign_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Automatically updates the Campaign Name for Womens Classes</description>
+        <formula>AND(
+OR(TEXT(Type) = &quot;Class - Women&quot;,  TEXT(Type) = &quot;Class - Community&quot;),
+Name &lt;&gt;
+IF(
+ISPICKVAL(Special_Class__c, &quot;Women&quot;),
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
+
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;
+
+&quot;COM - &quot; &amp; TEXT(Region__c),
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
+
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;
+
+&quot;COM - &quot; &amp; TEXT(Region__c) &amp; &quot; - &quot; &amp; TEXT( Special_Class__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Class - Campaign Name ONLINE</fullName>
+        <actions>
+            <name>Campaign_Name_Online</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Automatically updates the Campaign Name for Online</description>
+        <formula>OR(
+(AND(TEXT(Type) = &quot;Awareness&quot;, Name  &lt;&gt; TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp;
+&quot; Awareness&quot;)),
+
+
+(AND(
+TEXT(Type) = &quot;Class - Online&quot;, 
+Name  &lt;&gt;
+
+IF(OR(ISPICKVAL(Special_Class__c, &quot;All&quot;),
+ISPICKVAL(Special_Class__c, &quot;Women&quot;),
+ISPICKVAL(Special_Class__c, &quot;Men&quot;)),
+
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp;
+&quot;ON - &quot; &amp; TEXT(Online_Content_Type__c ),
+
+TEXT(YEAR(StartDate))+&quot;-&quot;
++LPAD(TEXT(MONTH(StartDate )),2,&quot;0&quot;)+&quot;-&quot; +LPAD(TEXT(DAY(StartDate)),2,&quot;0&quot;) &amp; &quot; &quot; &amp; &quot;ON - &quot; &amp; TEXT(Online_Content_Type__c ) &amp; &quot; - &quot; &amp; TEXT(Special_Class__c)))))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>External Campaign No</fullName>
+        <actions>
+            <name>External_Campaign_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>This is to update the External Campaign No with the Campaign No so that it can be used by the website to link the registration</description>
+        <formula>External_Campaign_Name__c &lt;&gt;  Campaign_No__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Post Class - Class Summary Form</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Cancelled,Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>6/7/2017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>If the Tutor Class Feedback Received Date is Blank then it will send a reminder 1,7 days after the event</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Post_Class_Tutor_Class_Summary</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Tutor_Class_Summary_Reminder</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Post_Class_Tutor_Class_Summary</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Tutor_Class_Summary_Reminder</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Post Class - Class Summary Form2</fullName>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Cancelled,Completed,Postponed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>6/7/2017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>notEqual</operation>
+            <value>Online,Referrals,Paper,Rebook</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Type</field>
+            <operation>equals</operation>
+            <value>Class - Women,Class - Men,Class - Online,Class - Community</value>
+        </criteriaItems>
+        <description>If the Tutor Class Feedback Received Date is Blank then it will send a reminder 1,7 days after the event</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Post_Class_Tutor_Class_Summary</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Tutor_Class_Summary_Reminder</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>12</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Post_Class_Tutor_Class_Summary</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Tutor_Class_Summary_Reminder</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>36</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Post Class Notification Thanks to Facilitator%2C VC</fullName>
+        <actions>
+            <name>Post_Class_Tutor_Class_Summary_Thanks</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Tutor_Feedback</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 5 AND 6 AND (4 OR 3 OR 7)</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Health_Safety_Issues__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Supplies_Required__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>10/1/2017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Post_Class__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Notes__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Pre Class - Class Summary Form</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Planned,In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>6/3/2017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>notEqual</operation>
+            <value>Referrals,Paper,Online,Rebook</value>
+        </criteriaItems>
+        <description>2 Days before the Start Date it will sent the Tutor and PC a reminder about the Class and a link to the Class Summary Form</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Pre_Class_Registrations</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Pre_Class_Notification_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>-2</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Pre Class - Class Summary Form2</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Planned,In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>6/3/2017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>notEqual</operation>
+            <value>Online,Referrals,Paper,Rebook</value>
+        </criteriaItems>
+        <description>2 Days before the Start Date it will sent the Tutor and PC a reminder about the Class and a link to the Class Summary Form</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Pre_Class_Registrations</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Pre_Class_Notification_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>-36</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Pre Class - Class Summary Form3</fullName>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Planned,In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.StartDate</field>
+            <operation>greaterOrEqual</operation>
+            <value>2/1/2021</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Tutor_Class_Feedback_Received__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>notEqual</operation>
+            <value>Online,Referrals,Paper,Rebook</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Type</field>
+            <operation>equals</operation>
+            <value>Class - Women,Class - Men,Class - Online,Class - Community</value>
+        </criteriaItems>
+        <description>14, 7 and 3 Days before the Start Date it will sent the Tutor and PC a reminder about the Class and a link to the Class Summary Form</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Pre_Class_Registrations</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Pre_Class_Notification_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>-14</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Pre_Class_Registrations</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Pre_Class_Notification_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>-7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Pre_Class_Registrations</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Pre_Class_Notification_Sent</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Campaign.StartDate</offsetFromField>
+            <timeLength>-3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Warehouse Packing Date Reminder</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Campaign.Status</field>
+            <operation>notEqual</operation>
+            <value>Completed,Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Campaign.Warehouse_Packing_Date__c</field>
+            <operation>lessThan</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Class_Alert_Warehouse_Packing_Date</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Campaign.Warehouse_Packing_Date__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Website Name - Online</fullName>
+        <actions>
+            <name>Website_Name_Online</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Automatically updates the Website Name</description>
+        <formula>AND(ISPICKVAL(Type, &quot;Class - Online&quot;), 
+
+
+Website_Name__c &lt;&gt;	TEXT(Online_Content_Type__c) &amp; &quot;, &quot; &amp; LPAD(TEXT(DAY(StartDate )),2,&quot;0&quot;)+&quot;/&quot; +LPAD(TEXT(MONTH(StartDate)),2,&quot;0&quot;)+&quot;/&quot; +TEXT(YEAR(StartDate)) &amp; &quot;, &quot; &amp; TEXT( Start_Time__c ) &amp; &quot; - &quot; &amp; TEXT( End_Time__c ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Website Name - Womens</fullName>
+        <actions>
+            <name>Website_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Automatically updates the Website Name</description>
+        <formula>AND(OR(ISPICKVAL(Type, &quot;Class - Women&quot;), ISPICKVAL(Type, &quot;Class - Community&quot;)),
+
+Website_Name__c &lt;&gt;	TEXT(Region__c) &amp; &quot;, &quot; &amp; Venue_Website_Name__c &amp; &quot;, &quot; &amp; LPAD(TEXT(DAY(StartDate )),2,&quot;0&quot;)+&quot;/&quot; +LPAD(TEXT(MONTH(StartDate)),2,&quot;0&quot;)+&quot;/&quot; +TEXT(YEAR(StartDate)) &amp; &quot;, &quot; &amp; TEXT( Start_Time__c ) &amp; &quot; - &quot; &amp; TEXT( End_Time__c ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Pre_Class_Notification_Sent</fullName>
+        <assignedTo>sharon@lgfb.co.nz</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Pre Class Notification Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Tutor_Class_Summary_Reminder</fullName>
+        <assignedTo>sharon@lgfb.co.nz</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Post Class Summary Reminder</subject>
+    </tasks>
+</Workflow>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Blank_Record</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Campaign__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Volunteer_Status__c</columns>
+    <columns>Online_Email__c</columns>
+    <columns>Online_First_Name__c</columns>
+    <columns>Online_Last_Name__c</columns>
+    <columns>Online_Mobile__c</columns>
+    <columns>Role__c</columns>
+    <columns>Volunteer_Hours__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Contact__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Online_First_Name__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Blank Record</label>
+    <language>en_US</language>
+</ListView>

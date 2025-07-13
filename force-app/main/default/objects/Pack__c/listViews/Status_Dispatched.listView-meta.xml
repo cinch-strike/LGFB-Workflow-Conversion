@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Dispatched</fullName>
+    <columns>NAME</columns>
+    <columns>Contact__c</columns>
+    <columns>No_Packs_Requested__c</columns>
+    <columns>Status__c</columns>
+    <columns>Type__c</columns>
+    <columns>Dispatched_Date__c</columns>
+    <columns>Class__c</columns>
+    <columns>Class_Packing_Date__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Created_After_Packing_Date__c</columns>
+    <columns>Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Dispatched</value>
+    </filters>
+    <filters>
+        <field>Class_Packing_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>4/1/2024</value>
+    </filters>
+    <label>Dispatched</label>
+</ListView>

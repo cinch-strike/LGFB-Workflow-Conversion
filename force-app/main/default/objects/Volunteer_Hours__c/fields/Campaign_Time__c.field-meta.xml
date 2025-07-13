@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Time__c</fullName>
+    <description>Campaign__r.Start_Date_Day__c   &amp; &quot; &quot; &amp; TEXT(DAY( Campaign__r.StartDate ))+&quot;/&quot; +TEXT(MONTH(Campaign__r.StartDate))+&quot;/&quot; +TEXT(YEAR(Campaign__r.StartDate)) &amp; &quot; session time is &quot; &amp; TEXT(Campaign__r.Start_Time__c) &amp; &quot;-&quot; &amp; TEXT(Campaign__r.End_Time__c)</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Campaign__r.Start_Time__c) &amp; &quot;-&quot; &amp; TEXT(Campaign__r.End_Time__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Campaign Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

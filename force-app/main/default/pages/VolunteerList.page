@@ -1,0 +1,177 @@
+<apex:page sidebar="false" showheader="false" standardStylesheets="false" docType="html-5.0" title="Volunteer List" standardcontroller="Campaign" extensions="VolunteerListController" cache="false">
+    <c:classcss />
+    <apex:form id="bsubmit">
+    <div class="head-container">
+        <div class="logo-div">  
+            <div class="col-md-12">
+                <div class="col-md-7 logo">
+                    <img src="{!URLFOR($Resource.lgfb, 'slice/LGFB-logo.png')}"/>
+                </div>
+                <div class="col-md-5 title">
+                    <h3>Volunteers List</h3>
+                  <!-->  <span class="sub-title"><i>Participation Form</i></span>  <-->
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="workshop-details-div">
+            <div class="workshop-details">
+                <div class="col-md-12">
+                    <div class="form-horizontal">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">REGION</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.Region__c}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">VENUE</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.Venue_Name__c}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">&nbsp;</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">START DATE</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">
+                                        <apex:outputText value="{0,date, EEEE',' d MMM yyyy}">
+                                            <apex:param value="{!campaign.StartDate}" /> 
+                                        </apex:outputText>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">START TIME</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.Start_Time__c}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">END TIME</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.End_Time__c}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">PARTICIPANTS</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">
+                                        <apex:outputText value="{!campaign.NumberOfContacts}"/>
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">VOLUNTEER COORDINATOR</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.Volunteer_Coordinator__r.Name}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">FACILITATOR</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">{!campaign.Tutor__r.Name}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">FACILITATOR CLASS FEEDBACK RECEIVED</label>
+                                <div class="col-sm-9">
+                                    <p class="control-text">
+                                        <apex:outputText value="{0,date, EEEE',' d MMM yyyy}">
+                                            <apex:param value="{!campaign.Tutor_Class_Feedback_Received__c}" /> 
+                                        </apex:outputText>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="body-container">
+        <apex:pageMessages />
+        <div class="volunteerhours-div ">
+            <div class="volunteerhours-head">
+                <apex:outputPanel rendered="{!errorMessageList.size>0}" layout="block" styleClass="col-md-12">
+                    <div class="alert alert-danger">
+                        <strong>
+                            <apex:repeat value="{!errorMessageList}" var="err">
+                                {!err}
+                            </apex:repeat>
+                        </strong>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!saveSuccessful}" layout="block" styleClass="col-md-12">
+                    <div class="alert alert-success">
+                        <strong>
+                            Save successful!
+                        </strong>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            <div class="e-form-container form-horizontal">
+                <div class="a-table-container">
+                    <div class="a-table-div">
+                        <div class="row volunteerheader">
+                            <div class="col-sm-6">
+                                <h4>Volunteer Name</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4>Status</h4>
+                            </div>
+                            <!--<div class="col-sm-2">
+                                <h4>Email / Mobile</h4>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4>
+                               </h4>
+                            </div>-->
+                        </div>
+                        <br/>
+                        <apex:repeat value="{!volunteerHoursList}" var="vol">
+                            <div class="row volunteerrow" > 
+                                <div class="col-sm-6">
+                                    <apex:outputField value="{!vol.Volunteer_Abbreviated_Name__c}" styleClass="form-control"/>
+                                </div>
+                                <div class="col-sm-6">
+                                    <apex:inputField value="{!vol.Volunteer_Status__c}" styleClass="form-control" required="true"/>
+                                </div>
+                                <!--<div class="col-sm-2">
+                                    <div style="padding:2px;">
+                                        <apex:inputField value="{!vol.Online_Email__c}" html-placeholder="Email" styleClass="form-control" type="email"/>    
+                                    </div>
+                                    <div style="padding:2px;">
+                                        <apex:inputField value="{!vol.Online_Mobile__c}" html-placeholder="Mobile" styleClass="form-control" type="tel"/>    
+                                    </div>
+                                </div>-->
+                                <!--<div class="col-sm-2">
+                                    <apex:inputField value="{!vol.Role__c}" styleClass="form-control" required="true" html-placeholder="Role"/>
+                                </div>-->
+                            </div>
+                        </apex:repeat>
+                    </div>
+                </div>
+            </div>
+            <!--<apex:commandButton value="Add Volunteer" styleClass="btn" action="{!addRow}"/>-->
+        </div>    
+        <div class="buttons-div">
+            <div class="buttons-row">
+                <apex:commandButton styleClass="btn btn-save" value="SAVE" action="{!saveDetails}"/>
+                <!--<apex:commandLink styleClass="btn btn-print" action="{!printPdf}" value="PRINT" target="_blank"/>-->
+            </div>
+        </div>
+    </div>
+    </apex:form>
+</apex:page>

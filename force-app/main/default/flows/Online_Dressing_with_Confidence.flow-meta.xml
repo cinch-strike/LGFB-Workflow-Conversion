@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Class_Reminder_Styling_for_Confidence</name>
+        <label>Class Reminder - Styling for Confidence</label>
+        <locationX>869</locationX>
+        <locationY>157</locationY>
+        <actionName>CampaignMember.Class_Reminder_Patient_Email_Online_Styling_for_Confidence</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Update_Reminder_Sent_Date</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CampaignMember.Class_Reminder_Patient_Email_Online_Styling_for_Confidence</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Dressing_w_Confidence_Booked</name>
+        <label>Dressing w Confidence Booked</label>
+        <locationX>584</locationX>
+        <locationY>468</locationY>
+        <actionName>CampaignMember.Class_Booking_Confirmation_Online_Dressing_with_Confidence</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Booked_Confirmation_Date</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CampaignMember.Class_Booking_Confirmation_Online_Dressing_with_Confidence</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Booked_Email_Sent</name>
+        <label>Booked Email Sent Date</label>
+        <locationX>402</locationX>
+        <locationY>418</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Booked_Email_Sent_Date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Booked_Email_Sent_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Dressing_w_Confidence_Booked</targetReference>
+            </connector>
+            <label>Booked Email Sent Date</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Online Dressing with Confidence {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LGFB Online Dressing with Confidence</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Booked_Confirmation_Date</name>
+        <label>Booked Confirmation Date</label>
+        <locationX>584</locationX>
+        <locationY>588</locationY>
+        <inputAssignments>
+            <field>Booked_Email_Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Reminder_Sent_Date</name>
+        <label>Update Reminder Sent Date</label>
+        <locationX>903</locationX>
+        <locationY>349</locationY>
+        <filterLogic>1 OR 2</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Confirmed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Booked</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SMS_Reminder_Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>297</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Booked_Email_Sent</targetReference>
+        </connector>
+        <filterFormula>AND(TEXT({!$Record.Campaign.Status})= &quot;Planned&quot;, 
+TEXT({!$Record.Status})= &quot;Booked&quot;, 
+OR(
+TEXT({!$Record.Campaign.Online_Content_Type__c})= &quot;Styling for Confidence - Body Image&quot;,
+TEXT({!$Record.Campaign.Online_Content_Type__c})= &quot;Styling for Confidence - Dressing a Changing Body&quot;,
+TEXT({!$Record.Campaign.Online_Content_Type__c})= &quot;Styling for Confidence - Scarf Tutorial&quot;,TEXT({!$Record.Campaign.Online_Content_Type__c})= &quot;Styling for Confidence - Style Tips&quot;))</filterFormula>
+        <object>CampaignMember</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Reminders</name>
+            <connector>
+                <targetReference>Class_Reminder_Styling_for_Confidence</targetReference>
+            </connector>
+            <label>Reminders - 2 days</label>
+            <maxBatchSize>200</maxBatchSize>
+            <offsetNumber>-2</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Campaign_Start_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Reminders_2_hrs</name>
+            <connector>
+                <targetReference>Class_Reminder_Styling_for_Confidence</targetReference>
+            </connector>
+            <label>Reminders - 2 hrs</label>
+            <maxBatchSize>200</maxBatchSize>
+            <offsetNumber>-2</offsetNumber>
+            <offsetUnit>Hours</offsetUnit>
+            <recordField>Campaign_Start_Time__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>CampaignStatus</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

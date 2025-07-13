@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wellbeing__c</fullName>
+    <label>Wellbeing</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Very Useful</fullName>
+                <default>false</default>
+                <label>Very Useful</label>
+            </value>
+            <value>
+                <fullName>Useful</fullName>
+                <default>false</default>
+                <label>Useful</label>
+            </value>
+            <value>
+                <fullName>Of Little Use</fullName>
+                <default>false</default>
+                <label>Of Little Use</label>
+            </value>
+            <value>
+                <fullName>Not Useful</fullName>
+                <default>false</default>
+                <label>Not Useful</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Neither Agree nor Disagree</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Neither Agree nor Disagree</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

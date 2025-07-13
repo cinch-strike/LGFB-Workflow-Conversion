@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referral__c</fullName>
+    <label>Referral</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Cancer Society</fullName>
+                <default>false</default>
+                <label>Cancer Society</label>
+            </value>
+            <value>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+                <label>Facebook</label>
+            </value>
+            <value>
+                <fullName>Feel Better Month campaign</fullName>
+                <default>false</default>
+                <label>Feel Better Month campaign</label>
+            </value>
+            <value>
+                <fullName>Former Patient</fullName>
+                <default>false</default>
+                <label>Former Patient</label>
+            </value>
+            <value>
+                <fullName>Friend or relative</fullName>
+                <default>false</default>
+                <label>Friend or relative</label>
+            </value>
+            <value>
+                <fullName>Hairdresser or Stylist</fullName>
+                <default>false</default>
+                <label>Hairdresser or Stylist</label>
+            </value>
+            <value>
+                <fullName>Health Professional - Doctor</fullName>
+                <default>false</default>
+                <label>Health Professional - Doctor</label>
+            </value>
+            <value>
+                <fullName>Health Professional - Nurse</fullName>
+                <default>false</default>
+                <label>Health Professional - Nurse</label>
+            </value>
+            <value>
+                <fullName>Health Professional - Social Worker</fullName>
+                <default>false</default>
+                <label>Health Professional - Social Worker</label>
+            </value>
+            <value>
+                <fullName>Insurance Provider</fullName>
+                <default>false</default>
+                <label>Insurance Provider</label>
+            </value>
+            <value>
+                <fullName>LGFB Volunteer</fullName>
+                <default>false</default>
+                <label>LGFB Volunteer</label>
+            </value>
+            <value>
+                <fullName>Media</fullName>
+                <default>false</default>
+                <label>Media</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Pharmacy</fullName>
+                <default>false</default>
+                <label>Pharmacy</label>
+            </value>
+            <value>
+                <fullName>Previously Attended</fullName>
+                <default>false</default>
+                <label>Previously Attended</label>
+            </value>
+            <value>
+                <fullName>Web Search</fullName>
+                <default>false</default>
+                <label>Web Search</label>
+            </value>
+            <value>
+                <fullName>Wig Specialist</fullName>
+                <default>false</default>
+                <label>Wig Specialist</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

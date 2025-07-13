@@ -1,0 +1,152 @@
+<template>
+    <template if:true={isLoadingCommunityClasses}>
+        <div class="loading-message">Loading classes...</div>
+    </template>
+    <template if:false={isLoadingCommunityClasses}>
+        <lightning-tabset active-tab-value={activeTab}>
+            <lightning-tab label="Community" value="community">
+                <div class="slds-grid slds-gutters filter-container">
+                    <!-- Province Dropdown -->
+                    <lightning-combobox class="filter-item" name="commProvince"
+                        label="Province"
+                        value={commProvinceValue}
+                        options={commProvinceOptions}
+                        onchange={handleCommProvinceChange}>
+                    </lightning-combobox>
+    
+            
+                    <!-- Month-->
+                    <lightning-combobox class="filter-item" name="commMonthType" 
+                        label="Month" 
+                        value={commMonthValue} 
+                        options={commMonthOptions}
+                        onchange={handleCommMonthChange}>
+                    </lightning-combobox>
+            
+                    <!-- Day Dropdown -->
+                    <lightning-combobox class="filter-item" name="commday" 
+                        label="Day" 
+                        value={commDayValue} 
+                        options={commDayOptions}
+                        onchange={handleCommDayChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="table-mobile">
+                    <template for:each={filteredCommunityClasses} for:item="row">
+                        <div key={row.id} class="row">
+                            <div class="cell">
+                                <div class="label"><b>Region:</b> {row.Region__c}</div>
+                                <!--<div class="value">{row.Region__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>Venue:</b> {row.Venue_Name__c}</div>
+                                <!--<div class="value">{row.Venue_Name__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>When:</b> {row.When__c}</div>
+                                <!--<div class="value">{row.When__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>Participants:</b> {row.Special_Class__c}</div>
+                                <!--<div class="value">{row.Special_Class__c}</div>-->
+                            </div>
+                            <div class="cell full-width-button">
+                                <div class="label"> </div>
+                                <template if:true={row.Full_Capacity_Reached__c}>
+                                    <lightning-button label="At full capacity" variant="neutral" disabled="true"></lightning-button>
+                                </template>
+                                <template if:false={row.Full_Capacity_Reached__c}>
+                                    <div class="value">
+                                        <lightning-button label="Register" variant="brand" onclick={handleRegisterClick} data-url={row.Registration_URL__c}></lightning-button>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="custom-datatable">
+                    <lightning-datatable 
+                                data={filteredCommunityClasses}
+                                columns={communitycolumns}
+                                key-field="id"
+                                hide-checkbox-column="true"
+                                onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="Online" value="online">
+                <div class="slds-grid slds-gutters filter-container">
+                    <!-- Topic Dropdown -->
+                    <lightning-combobox class="filter-item" name="onlineTopic" 
+                        label="Topic" 
+                        value={onlineTopicValue} 
+                        options={onlineTopicOptions}
+                        onchange={handleOnlineTopicChange}>
+                    </lightning-combobox>
+            
+                    <!-- Month Dropdown -->
+                    <lightning-combobox class="filter-item" name="onlinemonth" 
+                        label="Month" 
+                        value={onlineMonthValue} 
+                        options={onlineMonthOptions}
+                        onchange={handleOnlineMonthChange}>
+                    </lightning-combobox>
+            
+            
+                    <!-- Day Dropdown -->
+                    <lightning-combobox class="filter-item" name="onlineday" 
+                        label="Day" 
+                        value={onlineDayValue} 
+                        options={onlineDayOptions}
+                        onchange={handleOnlineDayChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="table-mobile">
+                    <template for:each={filteredOnlineClasses} for:item="row">
+                        <div key={row.id} class="row">
+                            <div class="cell">
+                                <div class="label"><b>Content Type:</b> <a href={row.Web_Link__c} target="_blank">{row.Online_Content_Type__c}</a> </div>
+                                <!--<div class="value">{row.Online_Content_Type__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>When:</b> {row.When__c}</div>
+                                <!--<div class="value">{row.When__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>Topic:</b> {row.Topic__c}</div>
+                                <!--<div class="value">{row.Online_Speaker__c}</div>-->
+                            </div>
+                            <div class="cell">
+                                <div class="label"><b>Participants:</b> {row.Special_Class__c}</div>
+                                <!--<div class="value">{row.Special_Class__c}</div>-->
+                            </div>
+                            <div class="cell full-width-button">
+                                <div class="label"> </div>
+                                <template if:true={row.Full_Capacity_Reached__c}>
+                                    <lightning-button label="At full capacity" variant="neutral" disabled="true"></lightning-button>
+                                </template>
+                                <template if:false={row.Full_Capacity_Reached__c}>
+                                    <div class="value">
+                                        <lightning-button label="Register" variant="brand" onclick={handleRegisterClick} data-url={row.Registration_URL__c}></lightning-button>
+                                    </div>
+                                </template>
+                            </div>
+                            
+                        </div>
+                    </template>
+                    
+                </div>
+                <div class="custom-datatable">
+                    <lightning-datatable
+                        data={filteredOnlineClasses}
+                        columns={onlinecolumns}
+                        key-field="Id"
+                        hide-checkbox-column="true"
+                        onrowaction={handleRowAction}
+                    >
+                    </lightning-datatable>
+                </div>
+            </lightning-tab>
+        </lightning-tabset>
+    </template>
+</template>

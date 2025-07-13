@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Tickets_Website</fullName>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Area__c</columns>
+    <columns>Summary__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>Due_Date__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New,In Progress,Verification</value>
+    </filters>
+    <filters>
+        <field>System__c</field>
+        <operation>equals</operation>
+        <value>Website</value>
+    </filters>
+    <label>All Open Tickets - Website</label>
+    <language>en_US</language>
+</ListView>

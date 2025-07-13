@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Participant_Feedback_Facilitator_Online</fullName>
+        <description>Participant Feedback - Facilitator (Online)</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_ONLINE/Participant_Feedback_Facilitators_Online</template>
+    </alerts>
+    <alerts>
+        <fullName>Participant_Feedback_Tutor</fullName>
+        <description>Participant Feedback - Facilitator</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>clare@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sharon@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sheryll@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Participant_Feedback_Tutors</template>
+    </alerts>
+    <alerts>
+        <fullName>Participant_Feedback_Tutor_Men</fullName>
+        <ccEmails>info@lgfb.co.nz</ccEmails>
+        <description>Participant Feedback - Facilitator (Men)</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Tutor_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>cherie@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>clare@lgfb.co.nz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>info@lgfb.co.nz</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Class_Registration/Participant_Feedback_Tutors_Men</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Tutor_Email</fullName>
+        <field>Tutor_Email__c</field>
+        <formula>Class__r.Tutor__r.Email</formula>
+        <name>Tutor Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tutor_Email_Sent_Date</fullName>
+        <field>Tutor_Email_Sent_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Tutor Email Sent Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Facilitator Email Address</fullName>
+        <actions>
+            <name>Tutor_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Needed to send an copy of the feedback to the facilitator of the Class</description>
+        <formula>OR(ISCHANGED(Class__c), 
+
+AND(NOT(ISBLANK(Class__c)),  ISBLANK(Tutor_Email__c))
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Participant Feedback to Facilitator %28Men%29</fullName>
+        <actions>
+            <name>Participant_Feedback_Tutor_Men</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Tutor_Email_Sent_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(NOT(ISBLANK(Class__c)),  ISBLANK(Tutor_Email_Sent_Date__c),
+ TEXT(Class__r.Parent.Special_Class__c) = &quot;Men&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Participant Feedback to Facilitator %28Online%29</fullName>
+        <actions>
+            <name>Participant_Feedback_Facilitator_Online</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Tutor_Email_Sent_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(NOT(ISBLANK(Class__c)),  ISBLANK(Tutor_Email_Sent_Date__c),NOT( Email__c = &quot;di_wells@yahoo.com&quot;),  ISPICKVAL( Class__r.Type, &quot;Class - Online&quot;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Participant Feedback to Facilitator %28Women%29</fullName>
+        <actions>
+            <name>Participant_Feedback_Tutor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Tutor_Email_Sent_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(NOT(ISBLANK(Class__c)),  ISBLANK(Tutor_Email_Sent_Date__c),OR(
+ISPICKVAL( Class__r.Type, &quot;Class - Women&quot;), ISPICKVAL( Class__r.Type, &quot;Class - Community&quot;)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

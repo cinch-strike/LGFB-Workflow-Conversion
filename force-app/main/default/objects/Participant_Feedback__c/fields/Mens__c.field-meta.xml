@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mens__c</fullName>
+    <formula>IF(OR(TEXT( Class__r.Type)  = &quot;Class - Men&quot;,  TEXT(Class__r.Online_Content_Type__c) = &quot;Mens&quot;),
+TRUE,FALSE)</formula>
+    <label>Mens</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

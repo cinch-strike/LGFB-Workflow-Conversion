@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Why_Online__c</fullName>
+    <inlineHelpText>It is a more convenient way for me to access a LGFB class
+I have attended a local class and wanted a refresher of the tips
+I am interested in the different content not covered in a class
+I wanted a taster of what to expect before I register for a class</inlineHelpText>
+    <label>Why Online</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+                <label>Convenience</label>
+            </value>
+            <value>
+                <fullName>Previously Attended/Refresher</fullName>
+                <default>false</default>
+                <label>Previously Attended/Refresher</label>
+            </value>
+            <value>
+                <fullName>Postponed Class</fullName>
+                <default>false</default>
+                <label>Postponed Class</label>
+            </value>
+            <value>
+                <fullName>Different Content</fullName>
+                <default>false</default>
+                <label>Different Content</label>
+            </value>
+            <value>
+                <fullName>Taster</fullName>
+                <default>false</default>
+                <label>Taster</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Guest Speaker</fullName>
+                <default>false</default>
+                <label>Guest Speaker</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

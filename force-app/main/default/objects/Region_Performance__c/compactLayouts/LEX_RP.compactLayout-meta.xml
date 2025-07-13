@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LEX_RP</fullName>
+    <fields>Name</fields>
+    <fields>Region__c</fields>
+    <fields>Overall_Colour__c</fields>
+    <fields>Facilitator_Status__c</fields>
+    <fields>VC_Status__c</fields>
+    <fields>Volunteer_Statuss__c</fields>
+    <label>LEX RP</label>
+</CompactLayout>
